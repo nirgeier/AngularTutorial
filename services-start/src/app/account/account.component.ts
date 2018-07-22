@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { LoggingService } from '../logging.service';
+import { AccountsService } from '../accounts.service';
 
 @Component({
   selector: 'app-account',
@@ -10,15 +11,21 @@ import { LoggingService } from '../logging.service';
 export class AccountComponent {
   @Input() account: { name: string, status: string };
   @Input() id: number;
-  @Output() statusChanged = new EventEmitter<{ id: number, newStatus: string }>();
 
   // Add the Constructor with the Service injection
   // Make sure to specify the required type
-  constructor(private logger: LoggingService) {
+  //
+  // Since we dont add the AccountsService to the provider list it will be inherited from the 
+  // top component and will be injected here. This way we can share the service and have a
+  // single instance for the entire application
+  constructor(
+    private logger: LoggingService,
+    private accountsService: AccountsService
+  ) {
 
   }
   onSetTo(status: string) {
-    this.statusChanged.emit({ id: this.id, newStatus: status });
+    this.accountsService.updateStatus(this.id, status);
     this.logger.logStatusChange('New status: ' + status);
   }
 }

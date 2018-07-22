@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 
 // Add the service imprt
 import { LoggingService } from '../logging.service';
+import { AccountsService } from '../accounts.service';
 
 @Component({
   selector: 'app-new-account',
@@ -13,17 +14,19 @@ import { LoggingService } from '../logging.service';
 })
 
 export class NewAccountComponent {
-  @Output() accountAdded = new EventEmitter<{ name: string, status: string }>();
 
   // Add the Constructor with the Service injection
   // Make sure to specify the required type
-  constructor(private logger: LoggingService) { }
+  // Since we dont add the AccountsService to the provider list it will be inherited from the 
+  // top component and will be injected here. This way we can share the service and have a
+  // single instance for the entire application
+  constructor(
+    private logger: LoggingService,
+    private accountsService: AccountsService) { }
 
   onCreateAccount(accountName: string, accountStatus: string) {
-    this.accountAdded.emit({
-      name: accountName,
-      status: accountStatus
-    });
+    // Use the accounts service to add account
+    this.accountsService.addAcount(accountName, accountStatus);
 
     // Use the Service to log messages
     this.logger.logStatusChange('New status: ' + accountStatus);
