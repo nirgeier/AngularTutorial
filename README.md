@@ -257,3 +257,59 @@
     <router-outlet name="right" class="m-3"></router-outlet>
   </div>
   ```
+---
+### Step 07 - Routing from TypeScript
+- In this step we will learn how to use router (navigate) within the code (ts).
+- We will add buttonm when teh button is clicked the eventHandler in teh component will load teh required route.
+- Add button to the home component 
+[`src/app/home/home.component.html`](src/app/home/home.component.html)
+```html
+<p>
+  home works!
+  <br />
+  <button class="btn btn-primary"
+          (click)="onLoadUsers()">Load Users</button>
+</p>
+```
+- Implement the event handler in the [`src/app/home/home.component.ts`](src/app/home/home.component.ts)
+    - Add the `Router` import
+    - Update the constructor
+    - Implement the event handler
+    ```js
+    import { Router } from "@angular/router";
+    ...
+    constructor(private router: Router) { }
+    ...
+    
+    onLoadServers() {
+      this.router.navigate(['users']);
+    }
+    ```
+- The entire (completed) code [`src/app/home/home.component.ts`](src/app/home/home.component.ts)   
+  ```js
+  import { Component, OnInit } from '@angular/core';
+  import { Router } from "@angular/router";
+
+  @Component({
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.css']
+  })
+  export class HomeComponent implements OnInit {
+
+    constructor(private router: Router) { }
+
+    ngOnInit() {
+    }
+
+    onLoadUsers() {
+      this.router.navigate(['users']);
+
+      // We can also add { relativeTo... } if we wish to upload relative 
+      // links inside this route
+      // 
+      // this.router.navigate(['users'], { relativeTo : this.route});
+      //
+    }
+  }
+  ```
