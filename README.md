@@ -162,3 +162,32 @@
   </div>
   ```
 - At this point the app is refreshing the browser since we have `<a href=...>`.
+
+---
+### Step 04 - `routerLink`
+- We want the browser to display the  content without refreshing, to do so we will use `routerLink`. 
+- Update [`src/app/app.component.html`](src/app/app.component.html) and add the `routerLink`
+  ```html
+  <nav class="navbar navbar-dark bg-dark flex-column">
+    <ul class="navbar-nav bd-navbar-nav flex-row">
+      <li class="nav-item">
+        <a  class="nav-link mx-2"
+            routerLink="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a  class="nav-link mx-2"
+            routerLink="/servers">Servers</a>
+      </li>
+      <li class="nav-item">
+        <a  class="nav-link mx-2"
+            routerLink="/users">Users</a>
+      </li>
+    </ul>
+  </nav>
+  <hr />
+  <div class="row justify-content-center">
+    <router-outlet></router-outlet>
+  </div>
+  ```
+  - Test the application and verify that the browser does not reload and that the right content is displayed.
+  
