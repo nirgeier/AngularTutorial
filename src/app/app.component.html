@@ -1,13 +1,16 @@
 <nav class="navbar navbar-dark bg-dark flex-column">
   <ul class="navbar-nav bd-navbar-nav flex-row">
     <li class="nav-item">
-      <a class="nav-link mx-2" href="#">Home</a>
+      <a class="nav-link mx-2" href="/">Home</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link mx-2" href="#">Servers</a>
+      <a class="nav-link mx-2" href="/servers">Servers</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link mx-2" href="#">Users</a>
+      <a class="nav-link mx-2" href="/users">Users</a>
     </li>
   </ul>
 </nav>
+<div class="row justify-content-center">
+  <router-outlet></router-outlet>
+</div>

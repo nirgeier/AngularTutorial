@@ -119,3 +119,46 @@
   })
   export class AppModule { }
   ```
+---
+### Step 03 - `router-outlet`
+- Now we have to "tell" the applicaton where we want the content to be loaded. We will use the `<router-outlet></router-outlet>` directive for this purpose.
+
+  ### `<router-outlet></router-outlet>`
+
+  > Acts as a placeholder that Angular dynamically fills based on the current router state.
+
+  - Code samples
+  ```html
+  <router-outlet></router-outlet>
+
+  <!-- With names -->
+  <router-outlet name='left'></router-outlet>
+  <router-outlet name='right'></router-outlet>
+
+  <!-- With events -->
+  <router-outlet
+    (activate)='onActivate($event)'
+    (deactivate)='onDeactivate($event)'>
+  </router-outlet>
+  ```
+
+- Update the app template [`src/app/app.component.html`](src/app/app.component.html) and add the `<router-outlet></router-outlet>` and the right links (routes)
+  ```html
+  <nav class="navbar navbar-dark bg-dark flex-column">
+    <ul class="navbar-nav bd-navbar-nav flex-row">
+      <li class="nav-item">
+        <a class="nav-link mx-2" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link mx-2" href="/servers">Servers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link mx-2" href="/users">Users</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="row justify-content-center">
+    <router-outlet></router-outlet>
+  </div>
+  ```
+- At this point the app is refreshing the browser since we have `<a href=...>`.
