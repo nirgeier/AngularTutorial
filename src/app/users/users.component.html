@@ -1,3 +1,11 @@
-<p>
-  users works!
+<p>User with ID
+  <b>{{ user.id }} </b> loaded.</p>
+<p>User name is
+  <b>{{ user.name }}</b>
 </p>
+<hr/>
+<button *ngFor="let i of [100,200,300,400]"
+        class="btn btn-primary mr-2"
+        [routerLink]="['/users', i,'Moshe']">
+  Load User #{{ i }}
+</button>&nbsp;&nbsp;

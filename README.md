@@ -313,3 +313,57 @@
     }
   }
   ```
+---
+## Step 08 - Routing with parameters
+- Add paramters to the route in the [`/src/app/app.module.ts`](/src/app/app.module.ts) with the following format: <route>/:<param>
+  ```js
+  const appRoutes: Routes = [
+    ...
+    { path: 'users/:user_id/:user_name', component: UsersComponent },
+  ...
+  ];
+  ```
+- Now we need to add the code which will read the parametrs from the URL
+  - Add the required imports and code and `ActiveRoute` to the [`src/app/users/users.component.ts`](src/app/users/users.component.ts)
+    ```js
+    import { Component, OnInit } from '@angular/core';
+    import { ActivatedRoute } from "@angular/router";
+
+    ...
+    export class UserComponent implements OnInit {
+      // Add the user details
+      user: { id: number, name: string };
+
+      // Add the current router to the constructor
+      constructor(private route: ActivatedRoute) { }
+
+      ngOnInit() {
+        // Get the data from the router.
+        // Fetch the data from the route
+        this.user = {
+          id: this.route.snapshot.params['user_id'],
+          name: this.route.snapshot.params['user_name'],
+        }
+      }
+
+    }
+    ```
+  - Update the `routerLink` in [`/src/app/app.component.html`](src/app/app.component.html) to send paramters to the router 
+    ```html
+    <a [routerLink]="['/users','1','Moshe !!!!']">Load user</a>
+    ```
+  - Update the template to display the router values [`src/app/users/users.component.html`](src/app/users/users.component.html)
+    ```html
+    <p>User with ID
+      <b>{{ user.id }} </b> loaded.</p>
+    <p>User name is
+      <b>{{ user.name }}</b>
+    </p>
+    <hr/>
+    <button *ngFor="let i of [100,200,300,400]" class="btn btn-primary mr-2"
+            [routerLink]="['/users', {{i}},'Moshe']">
+            Load User #{{ i }}
+    </button>&nbsp;&nbsp;
+    ```
+- :fast_forward: Verify that the menu router is working 
+- :heavy_check_mark: **Task:** - Fix the code so when user click the **Load User** buttons, it will display the correct userId
