@@ -190,4 +190,27 @@
   </div>
   ```
   - Test the application and verify that the browser does not reload and that the right content is displayed.
+---
+### Step 05 - Multiple `router-outlet`
+- Add multiple `router-outlet` in [`src/app/app.component.html`](src/app/app.component.html)
+  ```html
+  <div class="row justify-content-center">
+    <router-outlet name="left"></router-outlet>
+    <router-outlet></router-outlet>
+    <router-outlet name="right"></router-outlet>
+  </div>
+  ``` 
+- Now we want to load the content in a diffrent `router-outlet`. To do so we will define in which outlet we want each route
+  ```html
+  <a ... [routerLink]="[{ outlets: { 'left': 'servers'}}]">Servers</a>
+  ```
+
+- We need to update the routes in [`src/app/app.module.ts`](src/app/app.module.ts)  
+  ```js
+  const appRoutes: Routes = [
+    ...
+    { path: 'servers', component: ServersComponent, outlet: 'left' }
+  ];
+  ``` 
+  - Test to verify that the componet is loaded in the destinated outlet
   

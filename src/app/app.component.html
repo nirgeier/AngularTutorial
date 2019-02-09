@@ -4,7 +4,7 @@
       <a class="nav-link mx-2" routerLink="/">Home</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link mx-2" routerLink="/servers">Servers</a>
+      <a class="nav-link mx-2" [routerLink]="[{ outlets: { 'left': 'servers'}}]">Servers</a>
     </li>
     <li class="nav-item">
       <a class="nav-link mx-2" routerLink="/users">Users</a>
@@ -12,5 +12,7 @@
   </ul>
 </nav>
 <div class="row justify-content-center">
-  <router-outlet></router-outlet>
+  <router-outlet name="left" class="m-3"></router-outlet>
+  <router-outlet class="m-3"></router-outlet>
+  <router-outlet name="right" class="m-3"></router-outlet>
 </div>
