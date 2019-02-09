@@ -213,4 +213,47 @@
   ];
   ``` 
   - Test to verify that the componet is loaded in the destinated outlet
+---
+### Step 06 `routerLinkActive`, `routerLinkActiveOptions`
   
+  Directive                 | Purpose
+  --------------------------|--------
+  `routerLinkActive`        | Add class to the nav tab to mark it as active (current)
+  `routerLinkActiveOptions` | Configure routerLinkActive by passing {exact: true}. 
+
+- Add the following `routerLinkActive` &&`routerLinkActiveOptions` to the navigation menu and test it.
+  ```html
+    <a ... 
+    routerLinkActive="active font-weight-bold"
+    [routerLinkActiveOptions]="{ exact:true }
+  ```
+- Full template code: [`/src/app/app.component.html`](/src/app/app.component.html)
+  ```html
+  <nav class="navbar navbar-dark bg-dark flex-column">
+    <ul class="navbar-nav bd-navbar-nav flex-row">
+      <li class="nav-item">
+        <a class="nav-link mx-2"
+          routerLink="/"
+          routerLinkActive="active font-weight-bold"
+          [routerLinkActiveOptions]="{ exact:true }">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link mx-2"
+          [routerLink]="[{ outlets: { 'left': 'servers'}}]"
+          routerLinkActive="active font-weight-bold"
+          [routerLinkActiveOptions]="{ exact:true }">Servers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link mx-2"
+          routerLink="/users"
+          routerLinkActive="active font-weight-bold"
+          [routerLinkActiveOptions]="{ exact:true }">Users</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="row justify-content-center">
+    <router-outlet name="left" class="m-3"></router-outlet>
+    <router-outlet class="m-3"></router-outlet>
+    <router-outlet name="right" class="m-3"></router-outlet>
+  </div>
+  ```
