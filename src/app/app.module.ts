@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { UpperPipe } from './upper.pipe';
+import { SubstrPipe } from './substr.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UpperPipe
+    UpperPipe,
+    SubstrPipe
   ],
   imports: [
     BrowserModule

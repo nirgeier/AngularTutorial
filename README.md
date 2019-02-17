@@ -36,3 +36,34 @@ In this part we will learn how to use Angular Pipes
   <p><b>AbcdEfgHiJklmnOpQrstuVWxyZ:</b> {{ 'AbcdEfgHiJklmnOpQrstuVWxyZ' | uppercase}}</p>
   <p><b>AbcdEfgHiJklmnOpQrstuVWxyZ:</b> {{ 'AbcdEfgHiJklmnOpQrstuVWxyZ' | lowercase}}</p>
   ```
+---
+
+### Step02 - Pipes with parameters
+
+- Create another pipe
+  ```
+  ng g p substr --skipTests
+  ```
+- Update the pipe code [`src/app/substr.pipe.ts'](src/app/substr.pipe.ts)
+  ```js
+  import { Pipe, PipeTransform } from '@angular/core';
+
+  @Pipe({
+    name: 'substr'
+  })
+  export class SubstrPipe implements PipeTransform {
+
+    transform(
+      value: string,
+      start: number,
+      end: number): any {
+      return value.substring(start, end);
+    }
+
+  }
+  ```  
+- Add code to the template to test the pipe
+```html
+<p><b>AbcdEfgHiJklmnOpQrstuVWxyZ:</b> {{ 'AbcdEfgHiJklmnOpQrstuVWxyZ' | substr:5:10}}</p>
+<p><b>AbcdEfgHiJklmnOpQrstuVWxyZ:</b> {{ 'AbcdEfgHiJklmnOpQrstuVWxyZ' | substr:3:5}}</p>
+```  
