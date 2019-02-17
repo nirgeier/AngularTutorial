@@ -1,7 +1,13 @@
-<p><b>AbcdEfgHiJklmnOpQrstuVWxyZ:</b> {{ 'AbcdEfgHiJklmnOpQrstuVWxyZ' | upper }}</p>
-<p><b>AbcdEfgHiJklmnOpQrstuVWxyZ:</b> {{ 'AbcdEfgHiJklmnOpQrstuVWxyZ' | uppercase}}</p>
-<p><b>AbcdEfgHiJklmnOpQrstuVWxyZ:</b> {{ 'AbcdEfgHiJklmnOpQrstuVWxyZ' | lowercase}}</p>
-<hr />
+<select [(ngModel)]="translationService.language">
+  <option *ngFor="let language of translationService.languages" [ngValue]="language">{{language}}</option>
+</select>
+<br />
+<div *ngFor="let language of translationService.translations | keyvalue">
+  <span *ngFor="let text of translationService.translations[language.key].texts | keyvalue">
+    {{ translationService.translations[language.key].texts[text.key] }}
+  </span>
+</div>
 
-<p><b>AbcdEfgHiJklmnOpQrstuVWxyZ:</b> {{ 'AbcdEfgHiJklmnOpQrstuVWxyZ' | substr:5:10}}</p>
-<p><b>AbcdEfgHiJklmnOpQrstuVWxyZ:</b> {{ 'AbcdEfgHiJklmnOpQrstuVWxyZ' | substr:3:5}}</p>
+<h1>
+  {{'hello' | translation}}
+</h1>

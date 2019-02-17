@@ -67,3 +67,29 @@ In this part we will learn how to use Angular Pipes
 <p><b>AbcdEfgHiJklmnOpQrstuVWxyZ:</b> {{ 'AbcdEfgHiJklmnOpQrstuVWxyZ' | substr:5:10}}</p>
 <p><b>AbcdEfgHiJklmnOpQrstuVWxyZ:</b> {{ 'AbcdEfgHiJklmnOpQrstuVWxyZ' | substr:3:5}}</p>
 ```  
+
+---
+### Step03 - Translation Service
+- In this section we will use the `@Injectable` decorator
+- `@Injectable` is a common way to inject services into  our application
+  ```js
+  @Injectable({
+    // we declare that this service should be created
+    // by the root application injector.
+    providedIn: 'root'
+  })
+  ```
+- Lets create the translator service and the translation pipe
+  ```sh
+  ng g s translator --skipTests
+  ng g p translation --skipTests
+  ```
+- **At this point the Developer took a day off and you have to do the following:**
+
+  1. Add a new language to the translation mechanism
+  2. Return the original string if the translation is not found so developers can know that there is no translation
+  3. Each language should also support different DateFormat
+  4. To make things a little bit less clear there are 2 kind of pipes
+  https://angular.io/guide/pipes#pure-and-impure-pipes
+
+  **Good luck.**
